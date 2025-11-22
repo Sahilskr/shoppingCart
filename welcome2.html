@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Baby Girl Announcement Story</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Nunito:wght@300;600;700&family=Amiri:wght@400;700&family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Nunito', sans-serif;
+            background-color: #fce7f3; /* pink-100 */
+            overflow: hidden; /* Prevent scrolling on body */
+        }
+        
+        /* Typography */
+        .font-script { font-family: 'Great Vibes', cursive; }
+        .font-arabic { font-family: 'Amiri', serif; }
+        .font-modern { font-family: 'Quicksand', sans-serif; }
+
+        /* Animations */
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+        @keyframes pulse-soft {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.8; transform: scale(1.05); }
+        }
+        @keyframes slideInRight {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes sparkle {
+            0%, 100% { opacity: 0; transform: scale(0); }
+            50% { opacity: 1; transform: scale(1); }
+        }
+
+        .animate-float { animation: float 6s ease-in-out infinite; }
+        .animate-pulse-soft { animation: pulse-soft 3s infinite; }
+        .page-enter { animation: slideInRight 0.5s cubic-bezier(0.4, 0.0, 0.2, 1) forwards; }
+        .fade-enter { animation: fadeIn 0.8s ease-out forwards; }
+
+        /* Gradient Text */
+        .gold-text {
+            background: linear-gradient(45deg, #d4af37, #f3e5ab, #d4af37);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0px 2px 4px rgba(0,0,0,0.1);
+        }
+
+        /* Story Progress Bar */
+        .progress-bar {
+            transition: width 0.3s linear;
+        }
+
+        /* Sparkles */
+        .sparkle {
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+            animation: sparkle 2s infinite;
+        }
+    </style>
+</head>
+<body class="h-screen w-screen flex justify-center items-center bg-pink-50">
+
+    <!-- Mobile Device Container -->
+    <div class="relative w-full h-full md:w-[400px] md:h-[800px] bg-white md:rounded-3xl shadow-2xl overflow-hidden flex flex-col">
+        
+        <!-- Background Decoration (Fixed) -->
+        <div class="absolute inset-0 pointer-events-none overflow-hidden">
+            <div class="absolute top-0 left-0 w-64 h-64 bg-pink-100 rounded-full mix-blend-multiply filter blur-3xl opacity-50 animate-float"></div>
+            <div class="absolute bottom-0 right-0 w-64 h-64 bg-purple-100 rounded-full mix-blend-multiply filter blur-3xl opacity-50 animate-float" style="animation-delay: 2s;"></div>
+            <div id="sparkles-layer" class="absolute inset-0 z-0"></div>
+        </div>
+
+        <!-- Story Progress Indicators -->
+        <div class="absolute top-0 left-0 right-0 z-30 flex gap-1 p-2">
+            <div class="h-1 flex-1 bg-gray-200 rounded-full overflow-hidden"><div id="bar-0" class="h-full bg-pink-500 w-0 transition-all duration-300"></div></div>
+            <div class="h-1 flex-1 bg-gray-200 rounded-full overflow-hidden"><div id="bar-1" class="h-full bg-pink-500 w-0 transition-all duration-300"></div></div>
+            <div class="h-1 flex-1 bg-gray-200 rounded-full overflow-hidden"><div id="bar-2" class="h-full bg-pink-500 w-0 transition-all duration-300"></div></div>
+            <div class="h-1 flex-1 bg-gray-200 rounded-full overflow-hidden"><div id="bar-3" class="h-full bg-pink-500 w-0 transition-all duration-300"></div></div>
+            <div class="h-1 flex-1 bg-gray-200 rounded-full overflow-hidden"><div id="bar-4" class="h-full bg-pink-500 w-0 transition-all duration-300"></div></div>
+        </div>
+
+        <!-- Main Content Area (Tap Zones) -->
+        <div class="relative flex-1 z-10" id="gesture-area">
+            
+            <!-- Tap Navigation Zones -->
+            <div class="absolute inset-y-0 left-0 w-1/3 z-20" onclick="prevPage()"></div>
+            <div class="absolute inset-y-0 right-0 w-1/3 z-20" onclick="nextPage()"></div>
+
+            <!-- PAGES -->
+            
+            <!-- Page 1: Intro -->
+            <section id="page-0" class="page h-full w-full absolute inset-0 flex flex-col items-center justify-center p-6 text-center bg-white/30 backdrop-blur-sm">
+                <div class="mb-8 animate-float">
+                    <span class="text-8xl">🎀</span>
+                </div>
+                <p id="txt-intro-1" class="text-3xl font-arabic text-pink-600 mb-4 fade-enter" style="animation-delay: 0.2s">Alhamdulillah</p>
+                <h1 class="text-5xl font-script text-gray-800 fade-enter" style="animation-delay: 0.5s">It's a Girl!</h1>
+                <p class="mt-6 text-gray-500 font-modern text-sm fade-enter" style="animation-delay: 0.8s">Tap right to see more</p>
+            </section>
+
+            <!-- Page 2: Name Reveal -->
+            <section id="page-1" class="page h-full w-full absolute inset-0 flex flex-col items-center justify-center p-6 hidden bg-gradient-to-br from-pink-50 to-white">
+                <div class="absolute top-20 animate-pulse-soft">
+                    <svg class="w-32 h-32 text-pink-200" fill="currentColor" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+                </div>
+                <p class="text-gray-500 uppercase tracking-widest text-xs mb-4 z-10">Please welcome</p>
+                <h1 id="txt-name-1" class="text-7xl font-script gold-text z-10 drop-shadow-lg page-enter">Sofia</h1>
+                <div class="mt-8 p-4 border border-pink-200 rounded-full z-10">
+                    <span class="text-2xl">👑</span>
+                </div>
+            </section>
+
+            <!-- Page 3: Stats -->
+            <section id="page-2" class="page h-full w-full absolute inset-0 flex flex-col items-center justify-center p-8 hidden bg-white">
+                <h2 class="text-3xl font-script text-pink-500 mb-10">The Details</h2>
+                
+                <div class="grid grid-cols-1 gap-6 w-full max-w-xs">
+                    <!-- Date -->
+                    <div class="flex items-center bg-pink-50 p-4 rounded-2xl shadow-sm page-enter" style="animation-delay: 0.1s">
+                        <div class="w-12 h-12 bg-white rounded-full flex items-center justify-center text-2xl shadow-sm mr-4">📅</div>
+                        <div class="text-left">
+                            <p class="text-xs text-gray-400 uppercase">Born On</p>
+                            <p id="txt-date" class="text-xl font-bold text-gray-700">August 05, 2025</p>
+                        </div>
+                    </div>
+
+                    <!-- Time -->
+                    <div class="flex items-center bg-pink-50 p-4 rounded-2xl shadow-sm page-enter" style="animation-delay: 0.2s">
+                        <div class="w-12 h-12 bg-white rounded-full flex items-center justify-center text-2xl shadow-sm mr-4">⏰</div>
+                        <div class="text-left">
+                            <p class="text-xs text-gray-400 uppercase">Time</p>
+                            <p id="txt-time" class="text-xl font-bold text-gray-700">10:30 AM</p>
+                        </div>
+                    </div>
+
+                    <!-- Weight -->
+                    <div class="flex items-center bg-pink-50 p-4 rounded-2xl shadow-sm page-enter" style="animation-delay: 0.3s">
+                        <div class="w-12 h-12 bg-white rounded-full flex items-center justify-center text-2xl shadow-sm mr-4">⚖️</div>
+                        <div class="text-left">
+                            <p class="text-xs text-gray-400 uppercase">Weight</p>
+                            <p id="txt-weight" class="text-xl font-bold text-gray-700">3.2 kg</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Page 4: Gallery -->
+            <section id="page-3" class="page h-full w-full absolute inset-0 flex flex-col items-center pt-24 p-6 hidden bg-pink-50">
+                <h2 class="text-2xl font-modern text-gray-700 mb-6">First Moments</h2>
+                
+                <div class="w-64 h-64 bg-white p-2 shadow-xl transform -rotate-3 mb-6 page-enter transition-transform hover:rotate-0 duration-300">
+                    <div class="w-full h-full bg-gray-100 flex items-center justify-center overflow-hidden relative">
+                        <svg class="w-16 h-16 text-gray-300 absolute" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+                        <img id="img-placeholder" src="https://via.placeholder.com/300/FFC0CB/808080?text=Baby+Photo" class="w-full h-full object-cover opacity-80" alt="Baby Photo">
+                    </div>
+                </div>
+                
+                <p class="text-center italic text-gray-500 font-script text-xl page-enter" style="animation-delay: 0.3s">"Ten little fingers, ten little toes..."</p>
+            </section>
+
+            <!-- Page 5: Family & Thanks -->
+            <section id="page-4" class="page h-full w-full absolute inset-0 flex flex-col items-center justify-center p-8 hidden bg-gradient-to-t from-pink-100 to-white">
+                <div class="text-center space-y-6 page-enter">
+                    <h2 class="text-3xl font-script text-pink-600">Thank You</h2>
+                    <p class="text-gray-600 font-modern leading-relaxed">
+                        We are so grateful for your prayers and love as we welcome our little one into the world.
+                    </p>
+                    
+                    <div class="py-6 border-t border-b border-pink-200 mt-6">
+                        <p class="text-xs text-gray-400 uppercase tracking-wider mb-2">Proud Parents</p>
+                        <p id="txt-parents" class="text-2xl font-bold text-gray-800 font-arabic">Saniya & Ahmed</p>
+                    </div>
+
+                    <button onclick="shareCard()" class="bg-pink-500 text-white px-8 py-3 rounded-full shadow-lg hover:bg-pink-600 transition flex items-center justify-center mx-auto gap-2 mt-8">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"></path></svg>
+                        Share Joy
+                    </button>
+                </div>
+            </section>
+
+        </div>
+
+        <!-- Bottom Controls -->
+        <div class="absolute bottom-6 left-0 right-0 z-40 flex justify-center">
+            <button onclick="toggleEditor()" class="bg-white/90 backdrop-blur text-gray-600 px-4 py-2 rounded-full shadow-md text-sm font-semibold border border-gray-100 hover:text-pink-500 transition">
+                ✏️ Edit Info
+            </button>
+        </div>
+
+        <!-- Editor Modal -->
+        <div id="editor-panel" class="absolute inset-x-0 bottom-0 h-[60%] transform translate-y-full bg-white rounded-t-3xl shadow-2xl transition-transform duration-300 ease-in-out z-50 border-t border-pink-100 flex flex-col">
+            <div class="flex justify-between items-center p-4 border-b border-gray-100">
+                <h3 class="text-lg font-bold text-gray-700">Customize Story</h3>
+                <button onclick="toggleEditor()" class="text-gray-400 hover:text-gray-600 p-2">✕</button>
+            </div>
+            <div class="p-6 space-y-4 overflow-y-auto flex-1">
+                <div>
+                    <label class="text-xs text-gray-500 font-bold uppercase">Intro Text</label>
+                    <input type="text" id="in-intro" class="w-full p-3 bg-gray-50 rounded-lg text-sm mt-1" value="Alhamdulillah">
+                </div>
+                <div>
+                    <label class="text-xs text-gray-500 font-bold uppercase">Baby Name</label>
+                    <input type="text" id="in-name" class="w-full p-3 bg-gray-50 rounded-lg text-sm mt-1" value="Sofia">
+                </div>
+                <div class="grid grid-cols-2 gap-3">
+                    <div>
+                        <label class="text-xs text-gray-500 font-bold uppercase">Date</label>
+                        <input type="text" id="in-date" class="w-full p-3 bg-gray-50 rounded-lg text-sm mt-1" value="August 05, 2025">
+                    </div>
+                    <div>
+                        <label class="text-xs text-gray-500 font-bold uppercase">Time</label>
+                        <input type="text" id="in-time" class="w-full p-3 bg-gray-50 rounded-lg text-sm mt-1" value="10:30 AM">
+                    </div>
+                </div>
+                <div>
+                    <label class="text-xs text-gray-500 font-bold uppercase">Weight</label>
+                    <input type="text" id="in-weight" class="w-full p-3 bg-gray-50 rounded-lg text-sm mt-1" value="3.2 kg">
+                </div>
+                <div>
+                    <label class="text-xs text-gray-500 font-bold uppercase">Parents</label>
+                    <input type="text" id="in-parents" class="w-full p-3 bg-gray-50 rounded-lg text-sm mt-1" value="Saniya & Ahmed">
+                </div>
+                <button onclick="saveData()" class="w-full bg-pink-500 text-white py-4 rounded-xl font-bold shadow-lg hover:bg-pink-600 transition mt-4">
+                    Update Story
+                </button>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        // --- STATE ---
+        let currentPage = 0;
+        const totalPages = 5;
+        const pages = document.querySelectorAll('.page');
+        const bars = document.querySelectorAll('[id^="bar-"]');
+
+        // --- NAVIGATION ---
+        function showPage(index) {
+            // Bounds check
+            if (index < 0) index = 0;
+            if (index >= totalPages) index = totalPages - 1;
+            
+            currentPage = index;
+
+            // Update Views
+            pages.forEach((page, i) => {
+                if (i === currentPage) {
+                    page.classList.remove('hidden');
+                    // Re-trigger animations
+                    const animatedElements = page.querySelectorAll('.page-enter, .fade-enter');
+                    animatedElements.forEach(el => {
+                        el.style.animation = 'none';
+                        el.offsetHeight; /* trigger reflow */
+                        el.style.animation = null; 
+                    });
+                } else {
+                    page.classList.add('hidden');
+                }
+            });
+
+            // Update Progress Bars
+            bars.forEach((bar, i) => {
+                if (i < currentPage) {
+                    bar.style.width = '100%';
+                } else if (i === currentPage) {
+                    bar.style.width = '100%';
+                } else {
+                    bar.style.width = '0%';
+                }
+            });
+        }
+
+        function nextPage() {
+            if (currentPage < totalPages - 1) {
+                showPage(currentPage + 1);
+            } else {
+                // Loop back to start or stop? Let's loop for fun
+                showPage(0);
+            }
+        }
+
+        function prevPage() {
+            if (currentPage > 0) {
+                showPage(currentPage - 1);
+            }
+        }
+
+        // --- EDITOR ---
+        function toggleEditor() {
+            const panel = document.getElementById('editor-panel');
+            panel.classList.toggle('translate-y-full');
+        }
+
+        function saveData() {
+            // Get values
+            const intro = document.getElementById('in-intro').value;
+            const name = document.getElementById('in-name').value;
+            const date = document.getElementById('in-date').value;
+            const time = document.getElementById('in-time').value;
+            const weight = document.getElementById('in-weight').value;
+            const parents = document.getElementById('in-parents').value;
+
+            // Set values
+            document.getElementById('txt-intro-1').innerText = intro;
+            document.getElementById('txt-name-1').innerText = name;
+            document.getElementById('txt-date').innerText = date;
+            document.getElementById('txt-time').innerText = time;
+            document.getElementById('txt-weight').innerText = weight;
+            document.getElementById('txt-parents').innerText = parents;
+
+            // Close and reset
+            toggleEditor();
+            showPage(0); // Go back to start to see changes
+        }
+
+        function shareCard() {
+            if (navigator.share) {
+                navigator.share({
+                    title: 'Welcome Baby ' + document.getElementById('txt-name-1').innerText,
+                    text: 'We are blessed with a baby girl! Check out the announcement.',
+                    url: window.location.href
+                });
+            } else {
+                alert("Link copied to clipboard!");
+            }
+        }
+
+        // --- INITIALIZATION ---
+        // Create sparkles
+        const sparkleLayer = document.getElementById('sparkles-layer');
+        for(let i=0; i<30; i++) {
+            const s = document.createElement('div');
+            s.className = 'sparkle';
+            s.style.left = Math.random() * 100 + '%';
+            s.style.top = Math.random() * 100 + '%';
+            s.style.width = Math.random() * 4 + 'px';
+            s.style.height = s.style.width;
+            s.style.animationDelay = Math.random() * 3 + 's';
+            s.style.opacity = Math.random();
+            sparkleLayer.appendChild(s);
+        }
+
+        // Start
+        showPage(0);
+
+        // Keyboard support for desktop testing
+        document.addEventListener('keydown', (e) => {
+            if(e.key === 'ArrowRight') nextPage();
+            if(e.key === 'ArrowLeft') prevPage();
+        });
+    </script>
+</body>
+</html>
+
+
